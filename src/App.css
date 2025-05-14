@@ -1,7 +1,30 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+.App-header {
+  background-color: var(--secondary-100);
+  color: var(--gray-10);
+  padding: 1rem 2rem;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-h1);
+}
+
+.App-link {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* Behåll gärna dessa om du vill ha React-loggan snurrande */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,26 +36,7 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

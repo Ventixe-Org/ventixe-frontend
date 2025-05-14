@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './EventList.module.css';
 
 type Event = {
   id: number;
@@ -14,13 +15,13 @@ const dummyEvents: Event[] = [
 
 export const EventList: React.FC = () => {
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Kommande events</h2>
-      <ul>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Kommande events</h2>
+      <ul className={styles.list}>
         {dummyEvents.map(ev => (
-          <li key={ev.id} className="mb-3 p-3 border rounded">
-            <h3 className="text-xl">{ev.title}</h3>
-            <p className="text-sm text-gray-600">{ev.date}</p>
+          <li key={ev.id} className={styles.card}>
+            <h3>{ev.title}</h3>
+            <p className={styles.date}>{ev.date}</p>
             <p>{ev.description}</p>
           </li>
         ))}
