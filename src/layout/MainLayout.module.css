@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--main-background-color);
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header-kortet */
+.header {
+  background-color: var(--gray-10);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}
+.title {
+  margin: 0;
+  color: var(--primary-100);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+}
+
+/* Content-kortet */
+.content {
+  flex: 1;
+  background-color: var(--gray-10);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  overflow: auto;
+}
+
+/* Footer-kortet */
+.footer {
+  background-color: var(--gray-10);
+  border-radius: 8px;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  font-size: var(--font-size-body);
+  color: var(--text-muted-color);
+}

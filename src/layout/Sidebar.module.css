@@ -1,0 +1,62 @@
+/* src/layout/Sidebar.module.css */
+.sidebar {
+  width: 250px;
+  background: var(--gray-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* Logo */
+.logo img {
+  width: 160px;
+  margin-bottom: 2rem;
+}
+
+/* Nav-listan */
+.nav {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Alla länkar */
+.link {
+  display: flex;               /* FLEX istället för block */
+  flex-direction: row;         /* horisontell layout */
+  align-items: center;         /* vertikal centrering */
+  justify-content: center;     /* horisontell centrering */
+  width: 160px;                /* bestämt bredd på knappen */
+  height: 48px;                /* bestämd höjd */
+  margin: 0.5rem 0;            /* bara vertikalt mellanrum */
+  padding: 0 1rem;             /* inre padding horisontellt */
+  background: transparent;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--gray-90);
+  transition: background .2s;
+  gap: 0.5rem;                 /* mellanrum mellan ikon och text */
+}
+
+/* Aktiv länk */
+.linkActive {
+  background: var(--primary-90);
+  color: var(--gray-10) !important;
+}
+
+/* Ikon */
+.icon {
+  width: 24px;                 /* anpassa ikonstorlek */
+  height: 24px;
+  flex-shrink: 0;              /* ingen krympning */
+}
+
+/* Texten i länken */
+.link span {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
