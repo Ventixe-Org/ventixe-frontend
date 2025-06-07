@@ -15,7 +15,7 @@ export const EventList: React.FC = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    const base = process.env.REACT_APP_EVENTS_API
+    const base = process.env.REACT_APP_EVENTS_API || ''
 
     useEffect(() => {
         fetch(`${base}/api/events`)

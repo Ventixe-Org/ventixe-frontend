@@ -33,8 +33,8 @@ export const EventDetails: React.FC = () => {
     const [registration, setRegistration] = useState({ name: '', email: '' })
     const [submitted, setSubmitted] = useState(false)
 
-    const eventsBase = process.env.REACT_APP_EVENTS_API
-    const regsBase = process.env.REACT_APP_REGS_API
+    const eventsBase = process.env.REACT_APP_EVENTS_API || ''
+    const regsBase = process.env.REACT_APP_REGS_API || ''
 
     useEffect(() => {
         fetch(`${eventsBase}/api/events/${id}`)
@@ -102,20 +102,24 @@ export const EventDetails: React.FC = () => {
                     ? (
                         <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
                             <h3>Anmäl dig</h3>
-                            <label>Namn:</label><br />
-                            <input
-                                type="text"
-                                value={registration.name}
-                                onChange={e => setRegistration(p => ({ ...p, name: e.target.value }))}
-                                required
-                            /><br /><br />
-                            <label>Email:</label><br />
-                            <input
-                                type="email"
-                                value={registration.email}
-                                onChange={e => setRegistration(p => ({ ...p, email: e.target.value }))}
-                                required
-                            /><br />
+                            <div>
+                                <label>Namn:</label><br />
+                                <input
+                                    type="text"
+                                    value={registration.name}
+                                    onChange={e => setRegistration(p => ({ ...p, name: e.target.value }))}
+                                    required
+                                />
+                            </div>
+                            <div style={{ marginTop: '0.5rem' }}>
+                                <label>Email:</label><br />
+                                <input
+                                    type="email"
+                                    value={registration.email}
+                                    onChange={e => setRegistration(p => ({ ...p, email: e.target.value }))}
+                                    required
+                                />
+                            </div>
                             <button type="submit" style={{ marginTop: '1rem' }}>Skicka anmälan</button>
                             {regError && <p style={{ color: 'red' }}>Fel: {regError}</p>}
                         </form>
