@@ -33,10 +33,11 @@ export const EventDetails: React.FC = () => {
     const [registration, setRegistration] = useState({ name: '', email: '' })
     const [submitted, setSubmitted] = useState(false)
 
-    const regBase = 'http://localhost:5157/api/Registrations'
+    const eventsApi = 'http://localhost:5168/api/events'
+    const regsApi = 'http://localhost:5157/api/registrations'
 
     useEffect(() => {
-        fetch(`/api/events/${id}`) // Proxy → http://localhost:5168/api/events/{id}
+        fetch(`${eventsApi}/${id}`)
             .then(res => {
                 if (!res.ok) throw new Error(`Kunde inte hämta event (${res.status})`)
                 return res.json()
@@ -48,10 +49,9 @@ export const EventDetails: React.FC = () => {
 
     useEffect(() => {
         setLoadingRegs(true)
-        fetch(`${regBase}?eventId=${id}`) // http://localhost:5157/api/Registrations?eventId={id}
+        fetch(`${regsApi}?eventId=${id}`)
             .then(res => {
                 if (res.status === 404) {
-
                     setRegistrations([])
                     return
                 }
@@ -63,7 +63,7 @@ export const EventDetails: React.FC = () => {
             })
             .catch(err => setRegError(err.message))
             .finally(() => setLoadingRegs(false))
-    }, [id, submitted]) 
+    }, [id, submitted])
 
     if (loadingEvent) return <p>Laddar event…</p>
     if (eventError) return <p style={{ color: 'red' }}>{eventError}</p>
@@ -71,8 +71,7 @@ export const EventDetails: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-
-        fetch(regBase, {
+        fetch(regsApi, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ eventId: event.id, ...registration }),
@@ -104,24 +103,20 @@ export const EventDetails: React.FC = () => {
                     ? (
                         <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
                             <h3>Anmäl dig</h3>
-                            <div>
-                                <label>Namn:</label><br />
-                                <input
-                                    type="text"
-                                    value={registration.name}
-                                    onChange={e => setRegistration(prev => ({ ...prev, name: e.target.value }))}
-                                    required
-                                />
-                            </div>
-                            <div style={{ marginTop: '0.5rem' }}>
-                                <label>Email:</label><br />
-                                <input
-                                    type="email"
-                                    value={registration.email}
-                                    onChange={e => setRegistration(prev => ({ ...prev, email: e.target.value }))}
-                                    required
-                                />
-                            </div>
+                            <label>Namn:</label><br />
+                            <input
+                                type="text"
+                                value={registration.name}
+                                onChange={e => setRegistration(p => ({ ...p, name: e.target.value }))}
+                                required
+                            /><br /><br />
+                            <label>Email:</label><br />
+                            <input
+                                type="email"
+                                value={registration.email}
+                                onChange={e => setRegistration(p => ({ ...p, email: e.target.value }))}
+                                required
+                            /><br />
                             <button type="submit" style={{ marginTop: '1rem' }}>Skicka anmälan</button>
                             {regError && <p style={{ color: 'red' }}>Fel: {regError}</p>}
                         </form>
