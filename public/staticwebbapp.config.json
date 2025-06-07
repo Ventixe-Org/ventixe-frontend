@@ -1,0 +1,9 @@
+{
+  "globalHeaders": {
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [ "/static/*", "/assets/*", "/favicon.ico" ]
+  }
+}
