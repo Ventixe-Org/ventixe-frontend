@@ -1,12 +1,20 @@
 {
   "routes": [
     {
-      "route": "/api/events/*",
-      "rewrite": "https://tejedaeventservice-h0h7gterfdg3ercs.swedencentral-01.azurewebsites.net/api/{*}"
+      "route": "/api/events",
+      "rewrite": "https://tejedaeventservice-h0h7gterfdg3ercs.swedencentral-01.azurewebsites.net/api/events"
     },
     {
-      "route": "/api/registrations/*",
-      "rewrite": "https://tejedaregistrationservice-akhud3gzacfhda… .azurewebsites.net/api/{*}"
+      "route": "/api/events/{*}",
+      "rewrite": "https://tejedaeventservice-h0h7gterfdg3ercs.swedencentral-01.azurewebsites.net/api/events/{*}"
+    },
+    {
+      "route": "/api/registrations",
+      "rewrite": "https://tejedaregistrationservice-akhud3gzacfhda… .azurewebsites.net/api/registrations"
+    },
+    {
+      "route": "/api/registrations/{*}",
+      "rewrite": "https://tejedaregistrationservice-akhud3gzacfhda… .azurewebsites.net/api/registrations/{*}"
     }
   ],
   "navigationFallback": {
