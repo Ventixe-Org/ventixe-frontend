@@ -1,2 +1,2 @@
-REACT_APP_EVENTS_API=https://tejedaeventservice-h0h7gterfdg3ercs.swedencentral-01.azurewebsites.net
-REACT_APP_REGS_API=https://tejedaregistrationservice-akhud3gzacfhdahd.swedencentral-01.azurewebsites.net
+REACT_APP_EVENTS_API=http://localhost:5168
+REACT_APP_REGS_API=http://localhost:5157
