@@ -1,0 +1,2 @@
+REACT_APP_EVENTS_API=https://ventixe-eventservice.azurewebsites.net
+REACT_APP_REGS_API=https://ventixe-registrationservice.azurewebsites.net

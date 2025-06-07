@@ -33,11 +33,11 @@ export const EventDetails: React.FC = () => {
     const [registration, setRegistration] = useState({ name: '', email: '' })
     const [submitted, setSubmitted] = useState(false)
 
-    const eventsApi = 'http://localhost:5168/api/events'
-    const regsApi = 'http://localhost:5157/api/registrations'
+    const eventsBase = process.env.REACT_APP_EVENTS_API
+    const regsBase = process.env.REACT_APP_REGS_API
 
     useEffect(() => {
-        fetch(`${eventsApi}/${id}`)
+        fetch(`${eventsBase}/api/events/${id}`)
             .then(res => {
                 if (!res.ok) throw new Error(`Kunde inte hämta event (${res.status})`)
                 return res.json()
@@ -45,11 +45,11 @@ export const EventDetails: React.FC = () => {
             .then(setEvent)
             .catch(err => setEventError(err.message))
             .finally(() => setLoadingEvent(false))
-    }, [id])
+    }, [id, eventsBase])
 
     useEffect(() => {
         setLoadingRegs(true)
-        fetch(`${regsApi}?eventId=${id}`)
+        fetch(`${regsBase}/api/registrations?eventId=${id}`)
             .then(res => {
                 if (res.status === 404) {
                     setRegistrations([])
@@ -63,7 +63,7 @@ export const EventDetails: React.FC = () => {
             })
             .catch(err => setRegError(err.message))
             .finally(() => setLoadingRegs(false))
-    }, [id, submitted])
+    }, [id, submitted, regsBase])
 
     if (loadingEvent) return <p>Laddar event…</p>
     if (eventError) return <p style={{ color: 'red' }}>{eventError}</p>
@@ -71,7 +71,7 @@ export const EventDetails: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        fetch(regsApi, {
+        fetch(`${regsBase}/api/registrations`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ eventId: event.id, ...registration }),
@@ -91,7 +91,6 @@ export const EventDetails: React.FC = () => {
     return (
         <div style={{ padding: '1rem 2rem' }}>
             <button onClick={() => navigate(-1)}>← Tillbaka</button>
-
             <h2>{event.title}</h2>
             <p><strong>Datum:</strong> {new Date(event.date).toLocaleDateString('sv-SE')}</p>
             {event.location && <p><strong>Plats:</strong> {event.location}</p>}
@@ -125,7 +124,6 @@ export const EventDetails: React.FC = () => {
             }
 
             <hr style={{ margin: '2rem 0' }} />
-
             <h3>Anmälda ({registrations.length})</h3>
             {loadingRegs
                 ? <p>Laddar anmälningar…</p>

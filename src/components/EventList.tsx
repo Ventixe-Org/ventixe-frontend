@@ -15,8 +15,10 @@ export const EventList: React.FC = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
+    const base = process.env.REACT_APP_EVENTS_API
+
     useEffect(() => {
-        fetch('http://localhost:5168/api/events')
+        fetch(`${base}/api/events`)
             .then(res => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`)
                 return res.json()
@@ -24,7 +26,7 @@ export const EventList: React.FC = () => {
             .then((data: Event[]) => setEvents(data))
             .catch(err => setError(err.message))
             .finally(() => setLoading(false))
-    }, [])
+    }, [base])
 
     if (loading) return <p>Laddar events…</p>
     if (error) return <p style={{ color: 'red' }}>Fel: {error}</p>
