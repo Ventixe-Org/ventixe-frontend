@@ -1,4 +1,14 @@
 {
+  "routes": [
+    {
+      "route": "/api/*",
+      "rewrite": "https://tejedaeventservice-h0h7gterfdg3ercs.swedencentral-01.azurewebsites.net/api/{*}"
+    },
+    {
+      "route": "/api/*",
+      "rewrite": "https://tejedaregistrationservice-akhud3gzacfhda… .azurewebsites.net/api/{*}"
+    }
+  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [ "/api/*", "/static/*", "/assets/*" ]
